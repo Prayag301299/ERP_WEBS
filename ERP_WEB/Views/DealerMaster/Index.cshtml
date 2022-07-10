@@ -1,0 +1,278 @@
+﻿@{
+    ViewData["Title"] = "Dealer";
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+        <div class="col-6">
+            <h4 class="fw-bold">Dealer</h4>
+        </div>
+        <div class="col-6" style="text-align:right;">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter"> Add Dealer </button>
+        </div>
+    </div>
+
+    <!-- Bootstrap modals -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        @*<h5 class="card-header">Bootstrap modals</h5>*@
+        <div class="card">
+            @*<h5 class="card-header">Table Basic</h5>*@
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Customer Type</th>
+                            <th>EmailID</th>
+                            <th>Mobile</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        <tr>
+                            <td><strong>Abc</strong></td>
+                            <td><strong>Dealer</strong></td>
+                            <td><strong>abc@gmail.com</strong></td>
+                            <td><strong>9658741230</strong></td>
+                            <td><strong>Active</strong></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Abc</strong></td>
+                            <td><strong>Dealer</strong></td>
+                            <td><strong>abc@gmail.com</strong></td>
+                            <td><strong>9658741230</strong></td>
+                            <td><strong>Active</strong></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Abc</strong></td>
+                            <td><strong>Dealer</strong></td>
+                            <td><strong>abc@gmail.com</strong></td>
+                            <td><strong>9658741230</strong></td>
+                            <td><strong>Active</strong></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">Dealer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Customer Name</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Customer Name" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Customer Type</label>
+                                <select class="form-control">
+                                    <option value="1">Dealer</option>
+                                    <option value="2">Party</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">State</label>
+                                <select class="form-control">
+                                    <option value="1">Yes</option>
+                                    <option value="2">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Legal Status</label>
+                                <select class="form-control">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Nature of Business</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Nature of Business" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Industry</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Industry" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Address1</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Address1" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Address2</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Address2" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Select Country</label>
+                                <select class="form-control">
+                                    <option value="1">India</option>
+                                    <option value="2">USA</option>
+                                    <option value="3">Canada</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Select State</label>
+                                <select class="form-control">
+                                    <option value="1">Gujrate</option>
+                                    <option value="2">New york</option>
+                                    <option value="3">Ottawa</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Select City</label>
+                                <select class="form-control">
+                                    <option value="1">Rajkot</option>
+                                    <option value="2">Ahemdabad</option>
+                                    <option value="3">Junagadh</option>
+                                </select>
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Zip code</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Zip code" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Landline / mobile no</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Landline / mobile no" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">EmailID</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter EmailID" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Mobile</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Mobile" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">EmailId2</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter EmailId2" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Alternate Mobile</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Alternate Mobile" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Salutation</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Salutation" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Contact Person</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Contact Person" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Designation</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Designation" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Website</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Website" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Dob</label>
+                                <input type="date" id="nameWithTitle" class="form-control" placeholder="Enter Salutation" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Dow</label>
+                                <input type="date" id="nameWithTitle" class="form-control" placeholder="Enter Contact Person" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Tan no</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter Tan no" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">GST No</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter GST No" />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">PAN No</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter PAN No" />
+                            </div>+
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">GSTIN/UIN</label>
+                                <input type="text" id="nameWithTitle" class="form-control" placeholder="Enter GSTIN/UIN" />
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> Close </button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="m-0" />
+    </div>
+    <!--/ Bootstrap modals -->
+</div>
