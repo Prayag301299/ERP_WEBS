@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ERP.Models
 {
-    public class CountryMaster : BaseModel
+    public class CountryMaster 
     {
         public int Id { get; set; }
         public string CountryName { get; set; }

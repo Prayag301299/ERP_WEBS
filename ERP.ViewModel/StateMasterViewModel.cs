@@ -8,10 +8,7 @@ namespace ERP.ViewModel
     {
         public int Id { get; set; }
         public int CountryId { get; set; }
+        public string CountryName { get; set; }
         public string StateName { get; set; }
-        public string CreatadeBy { get; set; }
-        public DateTime CreatadeDate { get; set; }
-        public string LastUpdatedBy { get; set; }
-        public DateTime LastupdatedDate { get; set; }
     }
 }

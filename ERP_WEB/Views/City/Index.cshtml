@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<ERP.Models.CityMaster>
+@{
     ViewData["Title"] = "City";
 }
 
@@ -21,61 +22,41 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Country Name</th>
-                            <th>State Name</th>
                             <th>City Name</th>
+                            <th>State Name</th>
+                            <th>Country Name</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr>
-                            <td><strong>India</strong></td>
-                            <td><strong>Gujrate</strong></td>
-                            <td><strong>Rajkot</strong></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>USA</strong></td>
-                            <td><strong>New York</strong></td>
-                            <td><strong>NYC</strong></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Canada</strong></td>
-                            <td><strong>Ottawa</strong></td>
-                            <td><strong>Ontario</strong></td>
-                            <td>
-                                <div class="dropdown">
-                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.CityName</strong></td>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.StateId</strong></td>
+                                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>@item.CountryId</strong></td>
+                                    <td>
+                                        <div class="dropdown" style="position:unset !important">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:void(0);" onclick="AddOrEditCity(@item.Id)"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                <a class="dropdown-item" href="javascript:void(0);" onclick="DeleteCity(@item.Id)"><i class="bx bx-trash me-1"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center"><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>No Record Found</strong></td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -130,3 +111,9 @@
     </div>
     <!--/ Bootstrap modals -->
 </div>
+
+
+@section scripts
+{
+    <script src="~/lib/Common/City.js"></script>
+}

@@ -1,30 +1,90 @@
 ﻿using ERP.Models;
+using ERP.Repository.Implement;
 using ERP.ViewModel;
 using ERP_WEB.Helper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace ERP_WEB.Controllers
 {
     public class CountryController : Controller
     {
-        Common CommonApiCall;
+        //public  Common _Common;
+        IConfiguration _config;
+        public CountryController(IConfiguration _configuration)
+        {
+            _config = _configuration;
+        }
+        CommonApiClass commonApiClassrepo;
         public IActionResult Index()
         {
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            List<CountryMaster> Country = new List<CountryMaster>();
+            response = commonApiClassrepo.GetApi("Country", "GetAllCountry");
+            if (response.data != null)
+            {
+                Country = JsonConvert.DeserializeObject<List<CountryMaster>>(response.data.ToString());
+                if (Country.Count > 0)
+                {
+                    ViewBag.CounryData = Country;
+                    return View();
+                }
+                else
+                {
+                    return View();
+                }
+            }
             return View();
         }
 
-        public IActionResult GetCountry()
+        public IActionResult GetCountrybyId()
         {
 
-            return View();
+            return PartialView("_AddorEdit");
         }
 
-        
+
         [HttpPost]
-        public IActionResult SaveCountry(CountryMaster model)
+        public IActionResult Save(CountryMaster model)
         {
 
-            return View();
+            if (ModelState.IsValid)
+            {
+                
+                commonApiClassrepo = new CommonApiClass(_config);
+                var json = JsonConvert.SerializeObject(model);
+                var abc = commonApiClassrepo.PostApi("Country", "AddOrEditCountry", json);
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Delete(int Id)
+        {
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            response = commonApiClassrepo.DeleteApi("Country", "DeleteCountry", "id=" + Id);
+            if (response.isSuccess == true)
+            {
+                return Json(new { isSuccess = true, msg = "Deleted Successfully" });
+            }
+            else
+            {
+                return Json(new { isSuccess = false });
+            }
+
+        }
+
+        public PartialViewResult Country()
+        {
+            return PartialView("_AddorEdit");
         }
 
     }
