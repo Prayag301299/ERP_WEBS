@@ -19,7 +19,7 @@
         <div class="card">
             @*<h5 class="card-header">Table Basic</h5>*@
             <div class="table-responsive text-nowrap">
-                <table class="table">
+                <table class="table" id="tblcountry">
                     <thead>
                         <tr>
                             <th>Country Name</th>
@@ -63,38 +63,23 @@
         </div>
 
 
-        @{await Html.RenderPartialAsync("_AddOrEditCountry");}
-
-
-        @*@Html.PartialAsync("_AddOrEditCountry");*@
-
-        <!-- Modal -->
-        <!--<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Country </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    using (Html.BeginForm("Save", "Country", FormMethod.Post))
-                    {
-                        <div class="row">
-                            <div class="col mb-3">
-                                <label for="nameWithTitle" class="form-label">Country Name</label>-->
-        @*Html.TextBoxFor(m => m.CountryName, new { class = "form-control", placeholder = "Enter Country Name" })
-        <input type="text" id="nameWithTitle" class="form-control" required  />*@
-        <!--</div>
-                        </div>
-                    }
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> Close </button>
-                    <button type="button" class="btn btn-primary">Save</button>
+        <div class="modal fade" id="modal-common">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">BF</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> Close </button>
+                        <input type="submit" name="Save" value="Save" class="btn btn-primary" />
+                    </div>
                 </div>
             </div>
         </div>
-    </div>-->
 
 
         <hr class="m-0" />
@@ -104,6 +89,13 @@
 
 @section scripts
 {
-    
+    <script src=@Url.Content("~/js/Common.js")></script>
+    <script src="@Url.Content("https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js")"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="~/lib/Common/Country.js"></script>
 }

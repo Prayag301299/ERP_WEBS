@@ -44,10 +44,27 @@ namespace ERP_WEB.Controllers
             return View();
         }
 
-        public IActionResult GetCountrybyId()
-        {
 
-            return PartialView("_AddorEdit");
+
+
+
+
+        public IActionResult Add()
+        {
+            CountryMaster model = new CountryMaster();
+            return PartialView("Add", model);
+        }
+        public ActionResult Edit(int Id)
+        {
+            CountryMasterViewModel country= new CountryMasterViewModel();
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            response = commonApiClassrepo.GetDataById("Bf", "GetBfById", "id=" + Id);
+            if (response.data != null)
+            {
+                country = JsonConvert.DeserializeObject<CountryMasterViewModel>(response.data.ToString());
+            }
+            return PartialView("Add", country);
         }
 
 
@@ -64,8 +81,6 @@ namespace ERP_WEB.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
         public ActionResult Delete(int Id)
         {
             ResponseViewModel response = new ResponseViewModel();
@@ -80,11 +95,6 @@ namespace ERP_WEB.Controllers
                 return Json(new { isSuccess = false });
             }
 
-        }
-
-        public PartialViewResult Country()
-        {
-            return PartialView("_AddorEdit");
         }
 
     }

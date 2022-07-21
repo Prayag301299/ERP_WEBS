@@ -1,0 +1,16 @@
+﻿@model ERP.ViewModel.CountryMasterViewModel
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("Save", "Country", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col mb-3">
+            <label for="nameWithTitle" class="form-label">BF</label>
+            @Html.HiddenFor(m => m.Id)
+            @Html.TextBoxFor(m => m.CountryName, new { @class = "form-control", @placeholder = "Enter Country Name"})
+        </div>
+    </div>
+}

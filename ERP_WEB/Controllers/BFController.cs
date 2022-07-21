@@ -40,20 +40,33 @@ namespace ERP_WEB.Controllers
             }
             return View(bfmaster);
         }
+        public IActionResult Get()
+        {
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            List<Bf> bfmaster = new List<Bf>();
+            response = commonApiClassrepo.GetApi("Bf", "GetAllBf");
+            if (response.data != null)
+            {
+                bfmaster = JsonConvert.DeserializeObject<List<Bf>>(response.data.ToString());
+                if (bfmaster.Count > 0)
+                {
+                    //ViewBag.BF = bfmaster;
+                    return Json(JsonConvert.SerializeObject(bfmaster));
+                }
+                else
+                {
+                    return Json(JsonConvert.SerializeObject(bfmaster));
+                }
+            }
 
-
-
-
-
-
-
+            return Json(JsonConvert.SerializeObject(bfmaster));
+        }
         public IActionResult Add()
         {
             BFViewModel model = new BFViewModel();
             return PartialView("Add", model);
         }
-
-
         public ActionResult Edit(int Id)
         {
             BFViewModel BFViewModel = new BFViewModel();
@@ -64,9 +77,8 @@ namespace ERP_WEB.Controllers
             {
                 BFViewModel = JsonConvert.DeserializeObject<BFViewModel>(response.data.ToString());
             }
-            return PartialView(BFViewModel);
+            return PartialView("Add", BFViewModel);
         }
-
         public ActionResult Delete(int Id)
         {
             ResponseViewModel response = new ResponseViewModel();
@@ -82,8 +94,6 @@ namespace ERP_WEB.Controllers
             }
 
         }
-
-
         [HttpPost]
         public IActionResult Save(Bf model)
         {

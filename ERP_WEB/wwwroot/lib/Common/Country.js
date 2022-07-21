@@ -11,3 +11,26 @@ function DeleteCountry(Id) {
         }
     });
 }
+
+
+function AddOrEditbf(Id) {
+    debugger
+    AddGetModal("/Country/Edit?Id=" + Id, "Add new Bf", "lg", function () { });
+}
+
+
+
+$(document).ready(function () {
+    $('#tblcountry').DataTable();
+
+
+
+    $("body").on("click", "#btnAddbf", function () {
+        AddGetModal("/Country/Add", "Add new Country", "lg", function () { });
+    });
+
+
+    $("body").on("click", "#btnCancel", function () {
+        $("#modal-common").modal('hide');
+    });
+});

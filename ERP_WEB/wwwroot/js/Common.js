@@ -11,7 +11,7 @@
 			if (data != undefined && data != null) {
 				$("#modal-common .modal-body").html(data);
 				$("#modal-common .modal-title").html(header);
-				//$("#mymodal").modal('show');
+				$("#modal-common").modal('show');
 				$("#modal-common").modal({keyboard: false });
 				$("#modal-common").focus();
 				callback();
@@ -26,3 +26,19 @@
 		}
 	});
 }
+
+
+
+//const Toast = Swal.mixin({
+//	toast: true,
+//	position: 'top-end',
+//	showConfirmButton: false,
+//	timer: 3000
+//});
+
+//function NotifyMsg(Desc, msgType) {
+//	Toast.fire({
+//		icon: msgType,
+//		title: " " + Desc
+//	})
+//}

@@ -4,18 +4,13 @@
 }
 
 
-<div class="col-lg-12">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                @Html.HiddenFor(m => m.Id)
-                @Html.TextBoxFor(m => m.BF, new { @class = "form-control", @placeholder = "Enter BF", @type = "number" })
-            </div>
-        </div>
-    </div>
-
-    <div class="card-footer text-right">
-        <button id="btnCancel" type="button" class="btn btn-info">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+@using (Html.BeginForm("Save", "BF", FormMethod.Post))
+{
+<div class="row">
+    <div class="col mb-3">
+        <label for="nameWithTitle" class="form-label">BF</label>
+        @Html.HiddenFor(m => m.Id)
+        @Html.TextBoxFor(m => m.BF, new { @class = "form-control", @placeholder = "Enter BF", @type = "number" })
     </div>
 </div>
+}
