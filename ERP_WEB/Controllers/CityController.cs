@@ -39,8 +39,67 @@ namespace ERP_WEB.Controllers
             }
             return View(City);
         }
+        public IActionResult Add()
+        {
+            fillDropDown();
+            CityMasterViewModel model = new CityMasterViewModel();
+            return PartialView("Add", model);
+        }
+        public ActionResult Edit(int Id)
+        {
+            fillDropDown();
+            CityMasterViewModel CityViewModel = new CityMasterViewModel();
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            response = commonApiClassrepo.GetDataById("City", "GetCityById", "id=" + Id);
+            if (response.data != null)
+            {
+                CityViewModel = JsonConvert.DeserializeObject<CityMasterViewModel>(response.data.ToString());
+            }
+            return PartialView("Add", CityViewModel);
+        }
+        public IActionResult Save(CityMaster model)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                commonApiClassrepo = new CommonApiClass(_config);
+                var json = JsonConvert.SerializeObject(model);
+                var abc = commonApiClassrepo.PostApi("City", "AddOrEditCity", json);
+            }
+            return RedirectToAction("Index");
+        }
+        void fillDropDown()
+        {
+            ResponseViewModel responseforCountry = new ResponseViewModel();
+            List<CountryMaster> Country = new List<CountryMaster>();
+            commonApiClassrepo = new CommonApiClass(_config);
+            responseforCountry = commonApiClassrepo.GetApi("Country", "GetAllCountry");
+            if (responseforCountry.data != null)
+            {
+                Country = JsonConvert.DeserializeObject<List<CountryMaster>>(responseforCountry.data.ToString());
+                if (Country.Count > 0)
+                {
+                    ViewBag.Country = Country;
+                }
+            }
 
 
+
+            ResponseViewModel responseforState = new ResponseViewModel();
+            List<StateMaster> State = new List<StateMaster>();
+            commonApiClassrepo = new CommonApiClass(_config);
+            responseforState = commonApiClassrepo.GetApi("State", "GetAllState");
+            if (responseforState.data != null)
+            {
+                State = JsonConvert.DeserializeObject<List<StateMaster>>(responseforState.data.ToString());
+                if (State.Count > 0)
+                {
+                    ViewBag.State = State;
+                }
+            }
+        }
         public ActionResult Delete(int Id)
         {
             ResponseViewModel response = new ResponseViewModel();

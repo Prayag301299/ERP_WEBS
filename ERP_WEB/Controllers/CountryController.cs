@@ -51,7 +51,7 @@ namespace ERP_WEB.Controllers
 
         public IActionResult Add()
         {
-            CountryMaster model = new CountryMaster();
+            CountryMasterViewModel model = new CountryMasterViewModel();
             return PartialView("Add", model);
         }
         public ActionResult Edit(int Id)
@@ -59,7 +59,7 @@ namespace ERP_WEB.Controllers
             CountryMasterViewModel country= new CountryMasterViewModel();
             ResponseViewModel response = new ResponseViewModel();
             commonApiClassrepo = new CommonApiClass(_config);
-            response = commonApiClassrepo.GetDataById("Bf", "GetBfById", "id=" + Id);
+            response = commonApiClassrepo.GetDataById("Country", "GetCountryById", "id=" + Id);
             if (response.data != null)
             {
                 country = JsonConvert.DeserializeObject<CountryMasterViewModel>(response.data.ToString());

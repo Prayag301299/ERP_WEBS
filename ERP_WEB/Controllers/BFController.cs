@@ -95,7 +95,7 @@ namespace ERP_WEB.Controllers
 
         }
         [HttpPost]
-        public IActionResult Save(Bf model)
+        public IActionResult Save(BFViewModel model)
         {
 
             if (ModelState.IsValid)

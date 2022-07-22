@@ -1,0 +1,33 @@
+﻿@model ERP.ViewModel.CityMasterViewModel
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("Save", "City", FormMethod.Post))
+{
+<div class="modal-body">
+    <div class="row">
+        <div class="col mb-3">
+            <label for="nameWithTitle" class="form-label">Select Country</label>
+            @Html.HiddenFor(x => x.Id)
+            @Html.DropDownListFor(x => x.CountryId, new SelectList(@ViewBag.Country, "Id", "CountryName"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="nameWithTitle" class="form-label">State Name</label>
+            @Html.DropDownListFor(x => x.StateId, new SelectList(@ViewBag.State, "Id", "StateName"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label for="nameWithTitle" class="form-label">City Name</label>
+            @Html.TextBoxFor(m => m.CityName, new { @class = "form-control", @placeholder = "Enter State Name" })
+        </div>
+    </div>
+</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> Close </button>
+        <input type="submit" name="Save" value="Save" class="btn btn-primary" />
+    </div>
+}

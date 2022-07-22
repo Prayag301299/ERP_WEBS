@@ -10,3 +10,23 @@
         }
     });
 }
+
+function AddOrEditgsm(Id) {
+    debugger
+    AddGetModal("/GSM/Edit?Id=" + Id, "Add new Bf", "lg", function () { });
+}
+
+$(document).ready(function () {
+    /*$('#tblBf').DataTable();*/
+
+
+
+    $("body").on("click", "#AddGsm", function () {
+        AddGetModal("/GSM/Add", "Add new GSM", "lg", function () { });
+    });
+
+
+    $("body").on("click", "#btnCancel", function () {
+        $("#modal-common").modal('hide');
+    });
+});

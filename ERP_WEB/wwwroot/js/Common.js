@@ -28,17 +28,20 @@
 }
 
 
+function RefreshDataTable(selector) {
+	if ($(selector).length > 0)
+		$(selector).DataTable().draw();
+}
+const Toast = Swal.mixin({
+	toast: true,
+	position: 'top-end',
+	showConfirmButton: false,
+	timer: 3000
+});
 
-//const Toast = Swal.mixin({
-//	toast: true,
-//	position: 'top-end',
-//	showConfirmButton: false,
-//	timer: 3000
-//});
-
-//function NotifyMsg(Desc, msgType) {
-//	Toast.fire({
-//		icon: msgType,
-//		title: " " + Desc
-//	})
-//}
+function NotifyMsg(Desc, msgType) {
+	Toast.fire({
+		icon: msgType,
+		title: " " + Desc
+	})
+}

@@ -21,7 +21,7 @@ function AddOrEditbf(Id) {
 
 
 $(document).ready(function () {
-	$('#tblBf').DataTable();
+	/*$('#tblBf').DataTable();*/
 
 
 

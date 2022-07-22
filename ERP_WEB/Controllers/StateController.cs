@@ -19,6 +19,25 @@ namespace ERP_WEB.Controllers
             _config = _configuration;
         }
         CommonApiClass commonApiClassrepo;
+        public IActionResult Add()
+        {
+            fillDropDown();
+            StateMasterViewModel model = new StateMasterViewModel();
+            return PartialView("Add", model);
+        }
+        public ActionResult Edit(int Id)
+        {
+            fillDropDown();
+            StateMasterViewModel StateViewModel = new StateMasterViewModel();
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            response = commonApiClassrepo.GetDataById("State", "GetStateById", "id=" + Id);
+            if (response.data != null)
+            {
+                StateViewModel = JsonConvert.DeserializeObject<StateMasterViewModel>(response.data.ToString());
+            }
+            return PartialView("Add", StateViewModel);
+        }
         public IActionResult Index()
         {
             ResponseViewModel response = new ResponseViewModel();
@@ -30,20 +49,12 @@ namespace ERP_WEB.Controllers
             {
                 State = JsonConvert.DeserializeObject<List<StateMaster>>(response.data.ToString());
                 ViewBag.GetState = State;
-                ResponseViewModel responseforstate = new ResponseViewModel();
-                List<CountryMaster> Country = new List<CountryMaster>();
-                responseforstate = commonApiClassrepo.GetApi("Country", "GetAllCountry");
-                if (responseforstate.data != null)
-                {
-                    Country = JsonConvert.DeserializeObject<List<CountryMaster>>(response.data.ToString());
-                    if (Country.Count > 0)
-                    {
-                        ViewBag.Country = Country;
-                    }
-                }
             }
             return View();
         }
+
+
+
 
         public ActionResult Delete(int Id)
         {
@@ -65,39 +76,6 @@ namespace ERP_WEB.Controllers
 
         }
 
-        public StateMasterViewModel getStateDetails()
-        {
-            StateMasterViewModel model = new StateMasterViewModel();
-            commonApiClassrepo = new CommonApiClass(_config);
-
-            ResponseViewModel Stateresponse = new ResponseViewModel();
-            ResponseViewModel Countryresponse = new ResponseViewModel();
-
-            //Get State Data
-            List<StateMaster> State = new List<StateMaster>();
-            List<StateMasterViewModel> StateView = new List<StateMasterViewModel>();
-            
-            //Get Country Date
-            List<CountryMaster> Country = new List<CountryMaster>();
-
-
-            Stateresponse = commonApiClassrepo.GetApi("State", "GetAllState");
-            if (Stateresponse.data != null)
-            {
-                State = JsonConvert.DeserializeObject<List<StateMaster>>(Stateresponse.data.ToString());
-
-            }
-            Countryresponse = commonApiClassrepo.GetApi("Country", "GetAllCountry");
-            if (Countryresponse.data != null)
-            {
-                Country = JsonConvert.DeserializeObject<List<CountryMaster>>(Countryresponse.data.ToString());
-            }
-
-
-
-            return model;
-        }
-
         [HttpPost]
         public IActionResult Save(StateMaster model)
         {
@@ -110,6 +88,22 @@ namespace ERP_WEB.Controllers
                 var abc = commonApiClassrepo.PostApi("State", "AddOrEditState", json);
             }
             return RedirectToAction("Index");
+        }
+
+        void fillDropDown()
+        {
+            ResponseViewModel responseforstate = new ResponseViewModel();
+            List<CountryMaster> Country = new List<CountryMaster>();
+            commonApiClassrepo = new CommonApiClass(_config);
+            responseforstate = commonApiClassrepo.GetApi("Country", "GetAllCountry");
+            if (responseforstate.data != null)
+            {
+                Country = JsonConvert.DeserializeObject<List<CountryMaster>>(responseforstate.data.ToString());
+                if (Country.Count > 0)
+                {
+                    ViewBag.Country = Country;
+                }
+            }
         }
     }
 }

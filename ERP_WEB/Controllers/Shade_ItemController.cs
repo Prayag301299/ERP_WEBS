@@ -45,6 +45,23 @@ namespace ERP_WEB.Controllers
             
         }
 
+        public IActionResult Add()
+        {
+            ShadeViewModel model = new ShadeViewModel();
+            return PartialView("Add", model);
+        }
+        public ActionResult Edit(int Id)
+        {
+            ShadeViewModel ShadeViewModel = new ShadeViewModel();
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            response = commonApiClassrepo.GetDataById("Shade", "GetShadeById", "id=" + Id);
+            if (response.data != null)
+            {
+                ShadeViewModel = JsonConvert.DeserializeObject<ShadeViewModel>(response.data.ToString());
+            }
+            return PartialView("Add", ShadeViewModel);
+        }
         public ActionResult Delete(int Id)
         {
             ResponseViewModel response = new ResponseViewModel();

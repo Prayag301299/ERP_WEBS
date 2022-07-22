@@ -40,7 +40,23 @@ namespace ERP_WEB.Controllers
             }
             return View(Gsmmaster);
         }
-
+        public IActionResult Add()
+        {
+            GsmViewModel model = new GsmViewModel();
+            return PartialView("Add", model);
+        }
+        public ActionResult Edit(int Id)
+        {
+            GsmViewModel GSMViewModel = new GsmViewModel();
+            ResponseViewModel response = new ResponseViewModel();
+            commonApiClassrepo = new CommonApiClass(_config);
+            response = commonApiClassrepo.GetDataById("Gsm", "GetGsmById", "id=" + Id);
+            if (response.data != null)
+            {
+                GSMViewModel = JsonConvert.DeserializeObject<GsmViewModel>(response.data.ToString());
+            }
+            return PartialView("Add", GSMViewModel);
+        }
         public ActionResult Delete(int Id)
         {
             ResponseViewModel response = new ResponseViewModel();
@@ -56,10 +72,8 @@ namespace ERP_WEB.Controllers
             }
 
         }
-
-
         [HttpPost]
-        public IActionResult Save(Gsm model)
+        public IActionResult Save(GsmViewModel model)
         {
 
             if (ModelState.IsValid)
